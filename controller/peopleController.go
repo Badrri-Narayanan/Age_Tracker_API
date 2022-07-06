@@ -3,6 +3,7 @@ package controller
 import (
 	"database/sql"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"main/model"
 	"net/http"
@@ -47,7 +48,8 @@ func AddPeople(ctx *gin.Context, db *sql.DB) {
 	result, err := db.Query("SELECT * FROM add_people($1, $2);", newUser.Name, newUser.DateOfBirth)
 
 	if err != nil {
-		ctx.String(http.StatusInternalServerError, "Unable to connect to DB")
+		fmt.Printf("Error : %v", err)
+		ctx.String(http.StatusInternalServerError, "Internal Server Error")
 	}
 
 	var id int

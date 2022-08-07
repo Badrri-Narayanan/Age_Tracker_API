@@ -18,7 +18,7 @@ func CalculateAgeInMonthAndYears(dateOfBirth *time.Time) (int, int) {
 	yearDiff := getDiff(today.Year(), dateOfBirth.Year())
 
 	if int(today.Month()) < int(dateOfBirth.Month()) {
-		monthDiff = int(dateOfBirth.Month()) - 1
+		monthDiff = 12 - int(dateOfBirth.Month()) + int(today.Month())
 		yearDiff--
 	} else {
 		monthDiff = int(today.Month()) - int(dateOfBirth.Month())

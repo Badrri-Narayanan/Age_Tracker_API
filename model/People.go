@@ -13,5 +13,5 @@ type People struct {
 }
 
 func (people *People) CalculateAge() {
-	people.Age.Year, people.Age.Month = utils.CalculateAgeInMonthAndYears(&people.DateOfBirth)
+	people.Age.Days, people.Age.Months, people.Age.Years = utils.CalculateAgeInMonthAndYears(people.DateOfBirth)
 }

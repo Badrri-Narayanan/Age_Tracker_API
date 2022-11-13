@@ -1,6 +1,7 @@
 package model
 
 type Age struct {
-	Year  int `json:"year"`
-	Month int `json:"month"`
+	Years  int `json:"years"`
+	Months int `json:"months"`
+	Days   int `json:"days"`
 }

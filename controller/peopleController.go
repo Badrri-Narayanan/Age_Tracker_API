@@ -16,8 +16,11 @@ func GetListOfPeople(ctx *gin.Context, db *sql.DB) {
 	result, err := db.Query("SELECT * FROM get_list_of_people('');")
 
 	if err != nil {
+		fmt.Printf("Error : %v", err)
 		ctx.String(http.StatusInternalServerError, "Unable to connect to DB")
+		return
 	}
+	defer result.Close()
 
 	peoples := []model.People{}
 
@@ -39,6 +42,7 @@ func AddPeople(ctx *gin.Context, db *sql.DB) {
 	values, err := ioutil.ReadAll(body)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, "Invalid request. Please provide username and passowrd")
+		return
 	}
 
 	newUser := model.UserInfo{}
@@ -50,7 +54,9 @@ func AddPeople(ctx *gin.Context, db *sql.DB) {
 	if err != nil {
 		fmt.Printf("Error : %v", err)
 		ctx.String(http.StatusInternalServerError, "Internal Server Error")
+		return
 	}
+	defer result.Close()
 
 	var id int
 

@@ -16,7 +16,7 @@ func GetListOfPeople(ctx *gin.Context, db *sql.DB) {
 	result, err := db.Query("SELECT * FROM get_list_of_people('');")
 
 	if err != nil {
-		fmt.Printf("Error : %v", err)
+		fmt.Printf("Error : %v\n", err)
 		ctx.String(http.StatusInternalServerError, "Unable to connect to DB")
 		return
 	}
@@ -52,7 +52,7 @@ func AddPeople(ctx *gin.Context, db *sql.DB) {
 	result, err := db.Query("SELECT * FROM add_people($1, $2);", newUser.Name, newUser.DateOfBirth)
 
 	if err != nil {
-		fmt.Printf("Error : %v", err)
+		fmt.Printf("Error : %v\n", err)
 		ctx.String(http.StatusInternalServerError, "Internal Server Error")
 		return
 	}
